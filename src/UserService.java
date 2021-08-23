@@ -1,20 +1,11 @@
 public class UserService {
     public static UserService userService = null;
-    private static UserDao userDao = null;
+    private UserDao userDao = UserDao.getInstance();
     private UserService() {}
 
     public static UserService getInstance() {
-        if(userService == null) {
-            synchronized (UserService.class) {
-                if (userService == null) userService = new UserService();
-            }
-        }
-        initialize();
+        if(userService == null) userService = new UserService();
         return userService;
-    }
-
-    private static void initialize() {
-        if (userDao == null) userDao = UserDao.getInstance();
     }
 
     public void addUser(String name, String phone) {

@@ -2,7 +2,7 @@ import java.util.*;
 
 public class UserDao {
     public static UserDao userDao = null;
-    private static BalanceDao balanceDao = null;
+    private static BalanceDao balanceDao = BalanceDao.getInstance();
     private HashSet<User> usersList = new HashSet<>();
     public Map<Integer, User> userMap = new HashMap<>();
 
@@ -16,17 +16,8 @@ public class UserDao {
     }
 
     public static UserDao getInstance() {
-        if (userDao == null) {
-            synchronized (UserDao.class) {
-                if (userDao == null) userDao = new UserDao();
-            }
-        }
-        initialise();
+        if (userDao == null) userDao = new UserDao();
         return userDao;
-    }
-
-    public static void initialise() {
-        if (balanceDao == null) balanceDao = BalanceDao.getInstance();
     }
 
     public boolean addUser(User user) {

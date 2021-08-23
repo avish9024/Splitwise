@@ -13,11 +13,7 @@ public class BalanceDao {
     }
 
     public static BalanceDao getInstance() {
-        if (balanceDao == null) {
-            synchronized (BalanceDao.class) {
-                if (balanceDao == null) balanceDao = new BalanceDao();
-            }
-        }
+        if (balanceDao == null) balanceDao = new BalanceDao();
         return balanceDao;
     }
 

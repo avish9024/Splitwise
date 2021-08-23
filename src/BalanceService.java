@@ -4,21 +4,12 @@ import java.util.Map;
 public class BalanceService {
 
     public static BalanceService balanceService = null;
-    private static BalanceDao balanceDao = null;
+    BalanceDao balanceDao = BalanceDao.getInstance();
     private BalanceService() {}
 
     public static BalanceService getInstance() {
-        if (balanceService == null) {
-            synchronized (BalanceService.class) {
-                if (balanceService == null) balanceService = new BalanceService();
-            }
-        }
-        initialize();
+        if (balanceService == null) balanceService = new BalanceService();
         return balanceService;
-    }
-
-    public static void initialize() {
-        if (balanceDao == null)  balanceDao = BalanceDao.getInstance();
     }
 
     public void addExpense(Split.SplitType type, List<Integer> ids, Integer paidBy, double amount, List<Double> part, int noOfPeople) {
