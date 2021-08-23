@@ -16,5 +16,6 @@ public class UserService {
         } else {
             System.out.println("User already exists");
         }
+        System.out.println("***********************************************");
     }
 }
