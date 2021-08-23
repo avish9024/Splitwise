@@ -12,7 +12,7 @@ public class BalanceService {
         return balanceService;
     }
 
-    public void addExpense(Split.SplitType type, List<Integer> ids, Integer paidBy, double amount, List<Double> part, int noOfPeople) {
+    public void addExpense(Split type, List<Integer> ids, Integer paidBy, double amount, List<Double> part, int noOfPeople) {
         switch (type) {
             case EQUAL: splitEqually(ids, paidBy, amount, noOfPeople); break;
             case EXACT: splitExactly(ids, paidBy, part, noOfPeople); break;
