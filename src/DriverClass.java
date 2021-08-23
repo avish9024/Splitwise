@@ -9,12 +9,14 @@ public class DriverClass {
         userService.addUser("User3", "8709831713");
         userService.addUser("User4", "8709831714");
         balanceService.showAll();
-        balanceService.addExpense(Split.SplitType.EQUAL, Arrays.asList(2,3,4), 1, 1000, null, 4);
+        balanceService.addExpense(Split.SplitType.EQUAL, Arrays.asList(1,2,3,4), 1, 1000, null, 4);
         balanceService.showAll();
-        balanceService.addExpense(Split.SplitType.EXACT, Arrays.asList(3,4), 1, 0.0, Arrays.asList(500.0, 1000.0), 2);
+        balanceService.addExpense(Split.SplitType.EXACT, Arrays.asList(2,3), 1, 1250, Arrays.asList(370.0, 880.0), 2);
         balanceService.showAll();
-        balanceService.addExpense(Split.SplitType.PERCENT, Arrays.asList(2,3,4), 1, 1000, Arrays.asList(30.0,30.0,40.0), 3);
+        balanceService.addExpense(Split.SplitType.PERCENT, Arrays.asList(1,2,3,4), 4, 1200, Arrays.asList(40.0, 20.0, 20.0, 20.0), 4);
         balanceService.showAll();
         balanceService.showUserBalanceSheet(5);
+        userService.addUser("User4", "8709831714");
+        balanceService.showAll();
     }
 }
