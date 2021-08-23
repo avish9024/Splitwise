@@ -2,6 +2,7 @@ import java.util.*;
 
 public class UserDao {
     public static UserDao userDao = null;
+    private static BalanceDao balanceDao = null;
     private HashSet<User> usersList = new HashSet<>();
     public Map<Integer, User> userMap = new HashMap<>();
 
@@ -20,15 +21,18 @@ public class UserDao {
                 if (userDao == null) userDao = new UserDao();
             }
         }
+        initialise();
         return userDao;
     }
 
-    private BalanceDao balanceDao = BalanceDao.getInstance();
+    public static void initialise() {
+        if (balanceDao == null) balanceDao = BalanceDao.getInstance();
+    }
 
     public boolean addUser(User user) {
         if(usersList.add(user)) {
-            balanceDao.initialize(user);
             userMap.put(user.getId(), user);
+            balanceDao.initialize(user, userMap);
             return true;
         }
         return false;

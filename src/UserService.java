@@ -1,6 +1,6 @@
 public class UserService {
     public static UserService userService = null;
-
+    private static UserDao userDao = null;
     private UserService() {}
 
     public static UserService getInstance() {
@@ -9,10 +9,13 @@ public class UserService {
                 if (userService == null) userService = new UserService();
             }
         }
+        initialize();
         return userService;
     }
 
-    UserDao userDao = UserDao.getInstance();
+    private static void initialize() {
+        if (userDao == null) userDao = UserDao.getInstance();
+    }
 
     public void addUser(String name, String phone) {
         int id = IdGenerator.getId();

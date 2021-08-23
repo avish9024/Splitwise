@@ -4,7 +4,7 @@ import java.util.Map;
 public class BalanceService {
 
     public static BalanceService balanceService = null;
-
+    private static BalanceDao balanceDao = null;
     private BalanceService() {}
 
     public static BalanceService getInstance() {
@@ -13,10 +13,13 @@ public class BalanceService {
                 if (balanceService == null) balanceService = new BalanceService();
             }
         }
+        initialize();
         return balanceService;
     }
 
-    private BalanceDao balanceDao = BalanceDao.getInstance();
+    public static void initialize() {
+        if (balanceDao == null)  balanceDao = BalanceDao.getInstance();
+    }
 
     public void addExpense(Split.SplitType type, List<Integer> ids, Integer paidBy, double amount, List<Double> part, int noOfPeople) {
         switch (type) {
@@ -53,9 +56,11 @@ public class BalanceService {
 
    public void showAll() {
         balanceDao.showAll();
+        System.out.println("************************************************");
    }
 
    public void showUserBalanceSheet(Integer id) {
         balanceDao.showUserBalance(id);
+        System.out.println("************************************************");
    }
 }
